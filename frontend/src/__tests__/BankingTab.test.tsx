@@ -1,11 +1,12 @@
 
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { BankingTab } from '../BankingTab';
-import { apiClient } from '../../adapters/infrastructure/api/HttpApiClient';
+import { BankingTab } from '../components/BankingTab';
+import { apiClient } from '../adapters/infrastructure/api/HttpApiClient';
 import { vi } from 'vitest';
 
 // Mock the API Client
-vi.mock('../../adapters/infrastructure/api/HttpApiClient', () => ({
+// Mock the API Client
+vi.mock('../adapters/infrastructure/api/HttpApiClient', () => ({
     apiClient: {
         get: vi.fn(),
         post: vi.fn(),

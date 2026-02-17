@@ -1,13 +1,14 @@
 
 import { render, screen, waitFor } from '@testing-library/react';
-import { RoutesTab } from '../RoutesTab';
-import { apiClient } from '../../adapters/infrastructure/api/HttpApiClient';
+import { RoutesTab } from '../components/RoutesTab';
+import { apiClient } from '../adapters/infrastructure/api/HttpApiClient';
 import { vi } from 'vitest';
 
 // Mock API Client
-vi.mock('../../adapters/infrastructure/api/HttpApiClient', () => ({
+vi.mock('../adapters/infrastructure/api/HttpApiClient', () => ({
     apiClient: {
         get: vi.fn(),
+        post: vi.fn(),
     },
 }));
 

@@ -1,13 +1,14 @@
 
 import { render, screen, waitFor } from '@testing-library/react';
-import { CompareTab } from '../CompareTab';
-import { apiClient } from '../../adapters/infrastructure/api/HttpApiClient';
+import { CompareTab } from '../components/CompareTab';
+import { apiClient } from '../adapters/infrastructure/api/HttpApiClient';
 import { vi } from 'vitest';
 
 // Mock API Client
-vi.mock('../../adapters/infrastructure/api/HttpApiClient', () => ({
+vi.mock('../adapters/infrastructure/api/HttpApiClient', () => ({
     apiClient: {
         get: vi.fn(),
+        post: vi.fn(),
     },
 }));
 

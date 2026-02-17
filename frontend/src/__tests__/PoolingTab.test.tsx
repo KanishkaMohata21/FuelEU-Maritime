@@ -1,12 +1,13 @@
 
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { PoolingTab } from '../PoolingTab';
-import { apiClient } from '../../adapters/infrastructure/api/HttpApiClient';
+import { PoolingTab } from '../components/PoolingTab';
+import { apiClient } from '../adapters/infrastructure/api/HttpApiClient';
 import { vi } from 'vitest';
 
 // Mock API Client
-vi.mock('../../adapters/infrastructure/api/HttpApiClient', () => ({
+vi.mock('../adapters/infrastructure/api/HttpApiClient', () => ({
     apiClient: {
+        get: vi.fn(),
         post: vi.fn(),
     },
 }));
@@ -32,7 +33,7 @@ describe('PoolingTab Component', () => {
         render(<PoolingTab />);
 
         const yearInput = screen.getByDisplayValue('2025');
-        const shipsInput = screen.getByPlaceholderText('R004, R005');
+        const shipsInput = screen.getByPlaceholderText('R001, R002');
         const createBtn = screen.getByText('Create Pool');
 
         fireEvent.change(shipsInput, { target: { value: 'S1, S2' } });

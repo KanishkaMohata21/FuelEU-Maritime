@@ -49,9 +49,10 @@ export class ApplyBankingUseCase {
         // Available = Banked (Prev Year) - Applied (This Year).
 
         const currentEntries = await this.bankingRepository.findEntriesByShipAndYear(shipId, targetYear);
+        const bankedInCurrent = currentEntries.reduce((sum, e) => sum + (e.amount_gco2eq > 0 ? e.amount_gco2eq : 0), 0);
         const alreadyApplied = currentEntries.reduce((sum, e) => sum + (e.amount_gco2eq < 0 ? -e.amount_gco2eq : 0), 0);
 
-        const available = bankedInPrev - alreadyApplied;
+        const available = bankedInPrev + bankedInCurrent - alreadyApplied;
 
         if (amount > available) {
             throw new Error(`Insufficient banked surplus. Available: ${available}`);

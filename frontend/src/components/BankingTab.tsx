@@ -71,7 +71,7 @@ export const BankingTab = () => {
                 <div className="controls-row" style={{ display: 'flex', gap: 14, alignItems: 'flex-end', flexWrap: 'wrap' }}>
                     <div style={{ flex: '1 1 200px' }}>
                         <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 6 }}>Ship ID</label>
-                        <input type="text" value={shipId} onChange={e => setShipId(e.target.value)} className="input" placeholder="e.g. SHIP_001" />
+                        <input type="text" value={shipId} onChange={e => setShipId(e.target.value)} className="input" placeholder="e.g. R004" />
                     </div>
                     <div style={{ flex: '0 0 120px' }}>
                         <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 6 }}>Year</label>

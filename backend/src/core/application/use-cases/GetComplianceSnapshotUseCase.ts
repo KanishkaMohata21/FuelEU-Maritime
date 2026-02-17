@@ -34,7 +34,8 @@ export class GetComplianceSnapshotUseCase {
         // Let's check `PrismaRouteRepository.ts`.
 
         // For now, I will fetch all routes and filter by year. Verification step will clarify if we need ship_id on Route.
-        const yearRoutes = routes.filter(r => r.year === year);
+        // Filter routes by specific ship (assuming route_id acts as shipId in this simplified model)
+        const yearRoutes = routes.filter(r => r.year === year && r.route_id === shipId);
 
         let cb_gco2eq = 0;
 

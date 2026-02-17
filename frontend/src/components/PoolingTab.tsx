@@ -63,7 +63,7 @@ export const PoolingTab = () => {
                     </div>
                     <div style={{ flex: '1 1 280px' }}>
                         <label style={{ display: 'block', fontSize: '0.72rem', fontWeight: 600, color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 6 }}>Ship IDs (comma separated)</label>
-                        <input type="text" value={shipIds} onChange={e => setShipIds(e.target.value)} className="input" placeholder="R004, R005" />
+                        <input type="text" value={shipIds} onChange={e => setShipIds(e.target.value)} className="input" placeholder="R001, R002" />
                     </div>
                     <button className="btn btn-primary" onClick={handleCreatePool} disabled={isLoading} style={{ opacity: isLoading ? 0.7 : 1 }}>
                         {isLoading ? <><Loader2 size={14} style={{ animation: 'spin 1s linear infinite' }} /> Allocating…</> : <><Link2 size={14} /> Create Pool</>}

@@ -1,3 +1,4 @@
+
 # FuelEU Maritime Compliance Dashboard
 
 A comprehensive compliance management system designed to help shipping companies monitor, bank, and pool their GHG intensity balance under FuelEU Maritime regulations.
@@ -65,29 +66,46 @@ npm run dev
 
 The application will be available at `http://localhost:5173`.
 
-## 🧪 How to Execute Tests (Manual Verification)
+## 🧪 Testing
 
-Since this is a prototype, we rely on manual verification steps.
+### Automated Unit Tests
+Run the comprehensive test suite covering both backend logic and frontend components.
 
-### 1. Routes & Baseline
--   **Goal**: Ensure data loads.
--   **Step**: Go to **Routes Tab**. Verify 5 routes are listed. Click "Set Baseline" on any route.
+**Backend (Jest):**
+```bash
+cd backend
+npm test
+```
+*Tests: Compliance Calculation, Banking Logic, Pooling Orchestration.*
 
-### 2. Banking Surplus
--   **Goal**: Bank surplus from a compliant ship.
--   **Step**: Go to **Banking Tab**.
-    -   **Ship ID**: `R004` (Year `2025`).
-    -   Click **Fetch Data**.
-    -   Enter Amount: `100`. Click **Bank Surplus**.
-    -   Verify "Transactions" count increases.
+**Frontend (Vitest):**
+```bash
+cd frontend
+npx vitest run
+```
+*Tests: Components (Banking, Routes, Compare, Pooling).*
 
-### 3. Pooling Compliance
--   **Goal**: Verify greedy allocation.
--   **Step**: Go to **Pooling Tab**.
-    -   **Year**: `2025`.
-    -   **Ship IDs**: `R004, R005`.
-    -   Click **Create Pool**.
-    -   **Result**: Verify `R004` (Surplus) donates to `R005` (Deficit) in the "Allocation Results" table.
+### Manual Verification Guide
+
+1.  **Routes & Baseline**
+    -   **Goal**: Ensure data loads.
+    -   **Step**: Go to **Routes Tab**. Verify 5 routes are listed. Click "Set Baseline" on any route.
+
+2.  **Banking Surplus**
+    -   **Goal**: Bank surplus from a compliant ship.
+    -   **Step**: Go to **Banking Tab**.
+        -   **Ship ID**: `R004` (Year `2025`).
+        -   Click **Fetch Data**.
+        -   Enter Amount: `100`. Click **Bank Surplus**.
+        -   Verify "Transactions" count increases.
+
+3.  **Pooling Compliance**
+    -   **Goal**: Verify greedy allocation.
+    -   **Step**: Go to **Pooling Tab**.
+        -   **Year**: `2025`.
+        -   **Ship IDs**: `R004, R005`.
+        -   Click **Create Pool**.
+        -   **Result**: Verify `R004` (Surplus) donates to `R005` (Deficit) in the "Allocation Results" table.
 
 ## 📡 Sample API Requests
 
@@ -116,7 +134,7 @@ Content-Type: application/json
 
 {
   "year": 2025,
-  "shipIds": ["R004", "R005"]
+  "shipIds": ["R004", "R005"] // Example: R004 (Surplus), R005 (Deficit)
 }
 ```
 **Response:**

@@ -15,7 +15,6 @@ This application allows users to:
 
 The backend follows **Hexagonal Architecture (Ports & Adapters)** to decouple core business logic from external dependencies.
 
-```mermaid
 graph TD
     subgraph "Core Domain & Application"
         Entities[Entities (Ship, Route, Pool)]

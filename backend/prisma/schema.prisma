@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Route {
+  id              String  @id @default(uuid())
+  route_id        String  @unique // e.g. "R001"
+  vesselType      String? // e.g. "Container"
+  fuelType        String? // e.g. "HFO"
+  year            Int
+  ghg_intensity   Float   @map("ghg_intensity")
+  fuelConsumption Float?  @map("fuel_consumption") // in tonnes
+  distance        Float?  // in km
+  totalEmissions  Float?  @map("total_emissions") // in tonnes
+  is_baseline     Boolean @default(false) @map("is_baseline")
+
+  @@map("routes")
+}
+
+model ShipCompliance {
+  id        String @id @default(uuid())
+  ship_id   String @map("ship_id")
+  year      Int
+  cb_gco2eq Float  @map("cb_gco2eq")
+
+  @@unique([ship_id, year])
+  @@map("ship_compliance")
+}
+
+model BankEntry {
+  id            String   @id @default(uuid())
+  ship_id       String   @map("ship_id")
+  year          Int
+  amount_gco2eq Float    @map("amount_gco2eq")
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  @@map("bank_entries")
+}
+
+model Pool {
+  id        String       @id @default(uuid())
+  year      Int
+  createdAt DateTime     @default(now()) @map("created_at")
+  members   PoolMember[]
+
+  @@map("pools")
+}
+
+model PoolMember {
+  id        String @id @default(uuid())
+  poolId    String @map("pool_id")
+  shipId    String @map("ship_id")
+  cb_before Float  @map("cb_before")
+  cb_after  Float  @map("cb_after")
+
+  pool Pool @relation(fields: [poolId], references: [id])
+
+  @@unique([poolId, shipId])
+  @@map("pool_members")
+}
